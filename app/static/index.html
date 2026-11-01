@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultorio Dra. Laura</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">🦷</span>
+      <span class="brand-name">Consultorio Dra. Laura</span>
+    </div>
+    <button id="bell" class="btn btn-menu" type="button" aria-controls="panel" aria-expanded="false">
+      Notificaciones <span id="badge" class="badge" hidden>0</span>
+    </button>
+  </header>
+
+  <main class="layout">
+    <section class="card" aria-labelledby="new-title">
+      <h2 id="new-title">Nueva cita</h2>
+      <form id="form" novalidate>
+        <label for="patient">Nombre del paciente</label>
+        <input id="patient" name="patient" type="text" autocomplete="off" required>
+
+        <label for="phone">Teléfono de WhatsApp</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+54 9 11 5555 1234" required>
+        <p class="hint">Con código de país. El recordatorio le llegará a este número.</p>
+
+        <div class="row">
+          <div>
+            <label for="date">Fecha</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <div>
+            <label for="time">Hora</label>
+            <input id="time" name="time" type="time" step="900" required>
+          </div>
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+        <button class="btn btn-primary btn-block" type="submit">Agendar cita</button>
+        <p class="hint">Se agrega a Google Calendar y se avisa al paciente 7 días y 1 día antes.</p>
+      </form>
+    </section>
+
+    <section class="card card-wide" aria-labelledby="list-title">
+      <div class="list-head">
+        <h2 id="list-title">Citas</h2>
+        <div class="tabs" role="group" aria-label="Qué citas mostrar">
+          <button class="btn btn-secondary is-active" type="button" data-view="upcoming" aria-pressed="true">Próximas</button>
+          <button class="btn btn-secondary" type="button" data-view="all" aria-pressed="false">Todas</button>
+        </div>
+      </div>
+
+      <div id="attention" class="attention" hidden>
+        <h3>Requieren atención</h3>
+        <div id="attention-list"></div>
+      </div>
+
+      <div id="list"></div>
+      <p id="empty" class="empty" hidden>No hay citas para mostrar.</p>
+    </section>
+  </main>
+
+  <aside id="panel" class="drawer" role="dialog" aria-labelledby="panel-title" hidden>
+    <div class="drawer-head">
+      <h2 id="panel-title">Notificaciones</h2>
+      <button id="panel-close" class="btn btn-menu" type="button">Cerrar</button>
+    </div>
+    <div class="drawer-actions">
+      <button id="clear-all" class="btn btn-secondary" type="button">Eliminar todas</button>
+    </div>
+    <div id="notif-list"></div>
+    <p id="notif-empty" class="empty">No hay notificaciones.</p>
+  </aside>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

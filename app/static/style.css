@@ -1,0 +1,132 @@
+/* Identidad visual (SKILLS.md): fondos en marrones claros, menús en negro/blanco,
+   azul para lo que debe destacar, botones secundarios integrados al fondo pero visibles. */
+
+/* Gotham es una fuente con licencia: si no está instalada se usa Metropolis.
+   Para incluirlas en el servidor, copia los .woff2 a app/static/fonts/ (ver README). */
+@font-face { font-family: "Gotham"; font-weight: 400; font-display: swap;
+  src: local("Gotham"), local("Gotham Book"), url("/static/fonts/Gotham-Book.woff2") format("woff2"); }
+@font-face { font-family: "Gotham"; font-weight: 500; font-display: swap;
+  src: local("Gotham Medium"), url("/static/fonts/Gotham-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Metropolis"; font-weight: 400; font-display: swap;
+  src: local("Metropolis"), local("Metropolis Regular"), url("/static/fonts/Metropolis-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Metropolis"; font-weight: 500; font-display: swap;
+  src: local("Metropolis Medium"), url("/static/fonts/Metropolis-Medium.woff2") format("woff2"); }
+
+:root {
+  --bg: #e8d7c3;
+  --bg-deep: #d7be9f;
+  --surface: #f8f1e7;
+  --line: #b99c78;
+  --ink: #241810;
+  --ink-soft: #5b4636;
+  --menu: #1b1b1b;
+  --menu-ink: #ffffff;
+  --primary: #1f5fd1;
+  --primary-dark: #174ba8;
+  --ok-bg: #d4ebd2;   --ok-ink: #1d4b1f;
+  --warn-bg: #f6e3a8; --warn-ink: #5a4200;
+  --bad-bg: #f5d3ce;  --bad-ink: #7b1e14;
+  --radius: 12px;
+  --body: "Gotham", "Metropolis", "Montserrat", system-ui, sans-serif;
+  --strong: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+h1, h2, h3, .strong, .appt-name, .badge, .chip, .btn { font-family: var(--strong); font-weight: 700; }
+h2 { margin: 0 0 12px; font-size: 1.25rem; }
+h3 { margin: 0 0 8px; font-size: 1.05rem; }
+p { margin: 0; }
+
+/* ---------- barra superior (monocromática) ---------- */
+.topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 12px 20px; background: var(--menu); color: var(--menu-ink); }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--strong); font-weight: 700; font-size: 1.15rem; }
+.brand-mark { font-size: 1.4rem; }
+
+/* ---------- botones ---------- */
+.btn { appearance: none; border: 2px solid transparent; border-radius: 10px; padding: 10px 16px; font-size: 1rem;
+  cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn:focus-visible, input:focus-visible { outline: 3px solid #ffbf47; outline-offset: 2px; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: var(--bg-deep); color: var(--ink); border-color: var(--line); }
+.btn-secondary:hover { background: #cbb08e; }
+.btn-secondary.is-active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-danger { background: var(--bg-deep); color: var(--bad-ink); border-color: var(--bad-ink); }
+.btn-danger:hover { background: var(--bad-bg); }
+.btn-menu { background: transparent; color: var(--menu-ink); border-color: #ffffff; }
+.btn-menu:hover { background: #333; }
+.btn-block { width: 100%; }
+.btn-small { min-height: 38px; padding: 6px 12px; font-size: .92rem; }
+
+.badge { background: var(--primary); color: #fff; border-radius: 999px; padding: 1px 9px; font-size: .85rem; }
+
+/* ---------- estructura ---------- */
+.layout { display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: 20px; max-width: 1180px;
+  margin: 0 auto; padding: 20px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.list-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.tabs { display: flex; gap: 8px; }
+.empty { color: var(--ink-soft); padding: 12px 0; }
+
+/* ---------- formulario ---------- */
+label { display: block; margin: 14px 0 6px; font-family: var(--strong); font-weight: 700; }
+input { width: 100%; padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; background: #fff;
+  color: var(--ink); font: inherit; min-height: 44px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hint { color: var(--ink-soft); font-size: .9rem; margin: 6px 0 0; }
+.form-error { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--bad-bg); color: var(--bad-ink); font-weight: 500; }
+form .btn-primary { margin-top: 18px; }
+
+/* ---------- citas ---------- */
+.appt { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 14px; margin-bottom: 10px;
+  background: #fff; border: 1px solid var(--line); border-left: 6px solid var(--bg-deep); border-radius: 10px; }
+.appt-alert { border-left-color: #c2410c; }
+.appt-name { font-size: 1.1rem; }
+.appt-when { font-weight: 500; }
+.appt-phone, .meta-line { color: var(--ink-soft); font-size: .92rem; }
+.appt-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
+.appt-note { grid-column: 1 / -1; padding: 8px 10px; border-radius: 8px; background: var(--warn-bg); color: var(--warn-ink); font-weight: 500; }
+.appt-actions { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .85rem; margin-bottom: 4px; }
+.status-pending { background: var(--warn-bg); color: var(--warn-ink); }
+.status-confirmed { background: var(--ok-bg); color: var(--ok-ink); }
+.status-cancelled { background: var(--bad-bg); color: var(--bad-ink); }
+.attention { margin-bottom: 18px; padding: 12px; border: 2px solid #c2410c; border-radius: 12px; background: #fdf0e3; }
+
+/* ---------- panel de notificaciones ---------- */
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 30; width: min(400px, 100vw); background: var(--surface);
+  border-left: 1px solid var(--line); box-shadow: -8px 0 24px rgba(0,0,0,.25); overflow-y: auto; }
+.drawer[hidden] { display: none; }
+.drawer-head { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: var(--menu); color: var(--menu-ink); }
+.drawer-head h2 { margin: 0; }
+.drawer-actions { padding: 12px 16px 0; }
+#notif-list { padding: 8px 16px 16px; }
+.notif { padding: 12px; margin-top: 10px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.notif p { margin: 4px 0 8px; }
+.notif time { color: var(--ink-soft); font-size: .85rem; display: block; margin-bottom: 8px; }
+
+/* ---------- avisos emergentes: chicos, 5 s, con botón de cerrar y apilados ---------- */
+.toasts { position: fixed; top: 72px; right: 16px; z-index: 40; width: min(360px, calc(100vw - 32px));
+  max-height: calc(100vh - 88px); overflow: hidden; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast { flex: 0 0 auto; pointer-events: auto; background: #fff; color: var(--ink); border: 1px solid var(--line);
+  border-left: 6px solid var(--primary); border-radius: 10px; padding: 10px 12px; box-shadow: 0 6px 18px rgba(0,0,0,.2); }
+.toast-ok { border-left-color: #2e7d32; }
+.toast-warn { border-left-color: #b7791f; }
+.toast-alert { border-left-color: #c2410c; }
+.toast-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.toast-title { font-family: var(--strong); font-weight: 700; }
+.toast-body { margin-top: 4px; font-size: .92rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.toast.is-open .toast-body { white-space: normal; }
+.toast-more, .toast-close { background: none; border: 0; cursor: pointer; color: var(--primary); font: inherit; padding: 4px; min-height: 28px; }
+.toast-close { color: var(--ink); font-size: 1.1rem; line-height: 1; }
+.toast-more { font-size: .85rem; text-decoration: underline; padding-left: 0; }
+.toast button:focus-visible { outline: 3px solid #ffbf47; }
+
+@media (max-width: 820px) {
+  .layout { grid-template-columns: 1fr; padding: 12px; }
+  .appt { grid-template-columns: 1fr; }
+  .appt-meta { align-items: flex-start; text-align: left; }
+}
